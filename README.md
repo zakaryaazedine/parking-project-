@@ -29,7 +29,7 @@ Line numbers refer to the original files in `src/parking`.
 
 ## Question 4
 
-Calling refund directly for cash throws UnsupportedOperationException and stops the program. This breaks LSP. The instanceof check only hides the incompatible contract and makes Bank-style special cases necessary for new unsupported payment types.
+Calling refund directly for cash throws UnsupportedOperationException and stops the program. This breaks LSP. The instanceof check only hides the incompatible contract and makes more special cases necessary for new unsupported payment types.
 
 ## Question 5
 
