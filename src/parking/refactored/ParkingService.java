@@ -3,7 +3,6 @@ package parking.refactored;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import parking.Vehicle;
 import parking.PaymentMethod;
 import parking.CashPayment;
 
@@ -19,12 +18,7 @@ public class ParkingService{
     }
 
     public double fee(Vehicle x, int hours){
-        return switch (x.getType()){
-            case "CAR" -> hours * 5.0;
-            case "MOTORBIKE" -> hours * 2.0;
-            case "TRUCK" -> 20 + hours * 10.0;
-            default -> throw new IllegalArgumentException(x.getType());
-        };
+        return x.getTariff().fee(hours);
     }
 
     public void checkout(Vehicle x, int hours, PaymentMethod method) throws IOException{
