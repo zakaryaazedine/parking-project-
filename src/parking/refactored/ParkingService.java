@@ -3,8 +3,6 @@ package parking.refactored;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import parking.PaymentMethod;
-import parking.CashPayment;
 
 public class ParkingService{
     private final ReportFormatter formatter;
@@ -30,10 +28,15 @@ public class ParkingService{
         log.log(formatter.formatReceipt(receipt));
     }
 
-    public void cancel(Vehicle x, int hours, PaymentMethod method){
+    public void cancel(Vehicle x, int hours, RefundablePayment method){
         double amount = fee(x, hours);
-        if (method instanceof CashPayment) System.out.println(formatter.deskRefund(x.getPlate(), amount));
-        else method.refund(amount);
+        method.refund(amount);
+        total -= amount;
+    }
+
+    public void cancelAtDesk(Vehicle x, int hours){
+        double amount = fee(x, hours);
+        System.out.println(formatter.deskRefund(x.getPlate(), amount));
         total -= amount;
     }
 
